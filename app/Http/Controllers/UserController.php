@@ -16,9 +16,6 @@ class UserController extends Controller
     public function getUserDetail(Request $request) {
         $user = Users::find($request->id);
         $user['posts'] = $user->posts;
-        if(empty($user)) {
-            return ResponseHelper::error('No user found',[], 200);
-        }
         return ResponseHelper::success('User Details fetched successfully', $user);
     }
 
