@@ -14,7 +14,13 @@ class Users extends Authenticatable
     protected $table = 'social_users';
     protected $guarded = [];
 
+    const STATUS_ACTIVE = 1;
+
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function posts() {
+        return $this->hasMany(Post::class, 'user_id');
+    }
 }
