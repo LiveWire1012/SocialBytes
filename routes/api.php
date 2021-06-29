@@ -21,4 +21,11 @@ Route::prefix('auth')->group(function() {
 
 Route::middleware('auth:api')->group(function() {
     Route::post('logout', 'AuthController@logout');
+    Route::get('get-all-users', 'UserController@getAllUsers');
+    Route::middleware('verify_user')->prefix('user')->group(function () {
+        Route::get('user-detail/{id}', 'UserController@getUserDetail');
+        Route::post('delete-user/{id}', 'UserController@deleteUser');
+        Route::put('update-user/{id}', 'UserController@updateUser');
+        Route::put('change-user-status/{id}', 'UserController@changeStatus');
+    });
 });
